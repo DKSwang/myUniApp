@@ -1,7 +1,10 @@
 <template>
 	<view class="layout">
-		<view class="partA">
+		<view class="partA" hover-class="hover_partA">
 			AAA
+			<view class="a-child" hover-class="hover_partaa" :hover-stop-propagation="true">
+				AAA-aaa
+			</view>
 		</view>
 		<view class="partB">
 			BBB
@@ -18,10 +21,24 @@
 .layout{
 	border:1px solid red;
 	.partA{
-		color: red;
+		width:100px;
+		height:100px;
+		background:#ccc;
+		.a-child{
+			width: 50px;
+			height:50px;
+			background:red;
+		}
+		.hover_partaa{
+			background:orange;
+		}
 	}
+	.hover_partA{
+		background:Green;
+	}
+	
 	.partB{
-		color: Green;
+		color: green;
 	}
 }
 	
