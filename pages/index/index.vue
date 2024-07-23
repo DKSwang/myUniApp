@@ -7,7 +7,8 @@
 			</view>
 		</view>
 		<view class="partB">
-			BBB
+			BB
+			<text selectable>我是可以被拷贝的text</text>
 		</view>
 	</view>
 </template>
