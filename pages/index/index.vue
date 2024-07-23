@@ -1,35 +1,26 @@
 <template>
 	<view class="content">
 		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area" @click="changeTitle">
-			<text class="title" >{{title}}</text>
-		</view>
-		<view >
-			<navigator url="/pages/about/about" >跳转到关于页面</navigator>
-		</view>
-		<view class="child">
-			<demoOneVue ref="childDemo" @click="showChild"/>
-		</view>
-		<view >
-			<navigator url="/pages/demoOne/demoOne?name=张三&age=18" >跳转到DemoOne页面</navigator>
+		<view class="text-area">
+			<text class="title">{{title}}</text>
 		</view>
 	</view>
 </template>
 
-<script lang='ts' setup>
-	import demoOneVue from "../demoOne/demoOne.vue"
-const title = ref('王')
-const childDemo = ref(null)
-const changeTitle= () =>{
-	title.value = '魏'
-}
-const showChild = () =>{
-	childDemo.value.addCount()
-	console.log(childDemo.value.count,"childDemochildDemo")
-}
-uni.setNavigationBarTitle({
-	title: '首页'
-});
+<script>
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+
+		}
+	}
 </script>
 
 <style>
