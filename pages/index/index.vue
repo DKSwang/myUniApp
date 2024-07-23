@@ -8,7 +8,7 @@
 		</view>
 		<view class="partB">
 			BB
-			<text selectable>我是可以被拷贝的text</text>
+			<text selectable space="emsp">我是可以被        拷贝的text</text>
 		</view>
 	</view>
 </template>
