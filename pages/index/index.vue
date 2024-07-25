@@ -88,7 +88,9 @@
 		<input type="text"  v-model="nameTwo"></input>
 		<view class="line">组件的使用</view> 
 		<view class="">
-			<my-head></my-head>
+			<my-head title="组件1" @sendTitle="sendTitle"></my-head>
+			<my-head title="组件2"></my-head>
+			<my-head :title="title"></my-head>
 		</view>
 		<view class="line">生命周期</view> 
 	</view>
@@ -97,7 +99,9 @@
 <script setup>
 import { ref,watch } from 'vue';
 	const title = "你好呀"
+	
 	//Demo
+	
 	let picUrl = ref('../../static/images/133054691.jpg')
 	let arr = ref([
 		"../../static/images/133054691.jpg",
@@ -113,7 +117,9 @@ import { ref,watch } from 'vue';
 		},1000)
 	}
 	changePic()
+	
 	//监听
+	
 	// const name = ref('张飒')
 	// watch(name,(newValue,oldValue) =>{
 	// 	console.log(newValue,oldValue)
@@ -146,6 +152,10 @@ import { ref,watch } from 'vue';
    	   deep:true,
    	   immediate:true
    })
+   //参数传递
+   const sendTitle = (data) =>{
+	   console.log(data,"88")
+   }
    
 </script>
 
