@@ -1,6 +1,7 @@
 <template>
 	<view class="head-title">
 		{{title}}-{{myName}}
+		<slot></slot>
 	</view>
 </template>
 

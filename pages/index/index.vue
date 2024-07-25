@@ -86,21 +86,49 @@
 		<!-- 监听多个 -->
 		<input type="text"  v-model="nameOne"></input>
 		<input type="text"  v-model="nameTwo"></input>
-		<view class="line">组件的使用</view> 
+		<view class="line">组件的使用-参数的传递</view> 
 		<view class="">
-			<my-head title="组件1" @sendTitle="sendTitle"></my-head>
+			<my-head title="组件1" @sendTitle="sendTitle">
+				组件1的查抄
+			</my-head>
 			<my-head title="组件2"></my-head>
 			<my-head :title="title"></my-head>
 		</view>
-		<view class="line">生命周期</view> 
+		<view class="line">组件的使用-插槽</view> 
+		<my-bar>
+			<view style="color:green">
+				我的底部BAR
+			</view>
+		</my-bar>
+		<view class="line">生命周期-vue3</view> 
+		<!-- 
+		setup-onBeforeMount-onMounted-onBeforeUpdate-onUpdate-onBeforeUnmount-setup-onBeforeMount-onMounted-onBeforeUpdate-onUpdate-onUnmounted
+		 -->
+		 <view class="line">获取节点</view>
+		 <view class="getNode" ref="viewNode">
+		 	获取节点
+		 </view>
+		 <view class="line">子组件暴漏方法-父组件可以访问</view>
+		 <my-bar ref="myBarRef">
+		 	<view style="color:green">
+		 		子组件暴漏方法-父组件可以访问
+		 	</view>
+			<button size="default" type="success" @click="doChildF" >执行子组件方法</button>
+		 </my-bar>
+		  <view class="line">页面生命周期-onLoad,onReady,onShow,onHide</view>
+		  <view  ref="pageLifeRef">
+			  <navigator url="/pages/demo1/demo1?name=张三&age=90" >跳转到demo1</navigator>
+			  <view class="">{{count}}</view>
+			   <view class="backTop" v-if="showBack">回到顶部</view>
+		  </view>
 	</view>
 </template>
 
 <script setup>
-import { ref,watch } from 'vue';
+import { onMounted, ref,watch } from 'vue';
 	const title = "你好呀"
 	
-	//Demo
+	/* Demo */ 
 	
 	let picUrl = ref('../../static/images/133054691.jpg')
 	let arr = ref([
@@ -118,7 +146,7 @@ import { ref,watch } from 'vue';
 	}
 	changePic()
 	
-	//监听
+	/* 监听 */
 	
 	// const name = ref('张飒')
 	// watch(name,(newValue,oldValue) =>{
@@ -152,10 +180,66 @@ import { ref,watch } from 'vue';
    	   deep:true,
    	   immediate:true
    })
-   //参数传递
+   
+   /* 参数传递 */
+   
    const sendTitle = (data) =>{
 	   console.log(data,"88")
    }
+   
+     /* 获取节点 */
+	 
+   const viewNode = ref(null)
+   onMounted(() =>{
+	   console.log(viewNode.value,"viewNode")
+   })
+   
+    /* 执行子组件方法 */
+   
+   const myBarRef = ref(null)
+   const childData  = ref('')
+   const doChildF = () =>{
+	  childData.value =   myBarRef.value.outFunction();
+	  console.log(childData.value,"childData")
+   }
+   
+    /* 页面周期函数 */
+	
+   import {onLoad,onReady,onShow,onHide,onUnload,onPageScroll} from "@dcloudio/uni-app"
+   const count = ref(0)
+   let timer =setInterval(() =>{
+	   count.value++
+   },60)
+   onLoad((e) =>{
+	   //这里的e是页面跳转地址栏的参数
+	    console.log(e,"onLoad")
+   })
+   onShow(() =>{
+   	   console.log("onShow-跳转到另一个页面返回只会再次支持onShow,不在执行onLoad");
+	   //回到页面继续
+	   timer =setInterval(() =>{
+	   	   count.value++
+	   },60)
+   })
+   const pageLifeRef = ref(null)
+   onReady(() =>{
+	   console.log(pageLifeRef.value,"onReady")
+   })
+   onHide(() =>{
+   	   console.log("onHide函数-离开页面执行")
+	   //离开页面停止
+	   clearInterval(timer)
+   })
+   onUnload(() =>{
+	   //<navigator url="/pages/demo1/demo1" open-type="reLaunch">跳转到demo1-关闭其他页面没有返回按钮</navigator> 会触发
+	   //<navigator url="/pages/demo1/demo1" >跳转到demo1-关闭其他页面没有返回按钮</navigator> 不会触发
+   	   console.log("onUnload函数-卸载页面执行")
+   })
+   const showBack = ref(false)
+   onPageScroll((e) =>{
+	 showBack.value =  e.scrollTop>200  
+	 console.log(e,"onPageScroll");//{scrollTop: 1386}
+   })
    
 </script>
 
@@ -241,6 +325,14 @@ import { ref,watch } from 'vue';
 			color: rgba(255, 255, 255, 0.6);
 			background-color: #179b16;
 			border-color: #179b16;
+		  }
+		  .backTop{
+			  width: 100px;
+			  height: 100px;
+			  background-color: #179b16;
+			  position: fixed;
+			  right:20px;
+			  bottom:30px;
 		  }
 	}
 </style>
