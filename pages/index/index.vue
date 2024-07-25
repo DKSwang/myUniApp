@@ -86,6 +86,10 @@
 		<!-- 监听多个 -->
 		<input type="text"  v-model="nameOne"></input>
 		<input type="text"  v-model="nameTwo"></input>
+		<view class="line">组件的使用</view> 
+		<view class="">
+			<my-head></my-head>
+		</view>
 		<view class="line">生命周期</view> 
 	</view>
 </template>
