@@ -5,6 +5,7 @@
 		16:26:14.027   - Local:   http://localhost:5173/
 		16:26:14.027   * Network: http://172.20.10.4:5173/
 		16:26:14.027   - Network: http://172.0.1.108:5173/
+		设计图尺寸:750宽,这样量的尺寸直接写100rpx
 		 -->
 		<view class="line">view+text</view>
 		<view class="partA" hover-class="hover_partA">
@@ -121,6 +122,20 @@
 			  <view class="">{{count}}</view>
 			   <view class="backTop" v-if="showBack">回到顶部</view>
 		  </view>
+		  <view class="line">使用rpx-设计图750</view>
+		   <view class="line">样式导入-APP页面</view>
+		   <view style="color:green">
+			 1.uni.scss文件的样式变量全局直接使用
+		   	 2.自己定义了全局样式需要重新启动
+			 3.全局样式在app.vue和uni.scss导入都生效
+		   </view>
+		   <view class="line">全局文件-pages.json-globalStyle</view>
+		    <view class="line">全局文件-pages.pages</view>
+			<view style="color:green">
+			     1.globalStyle有的属性pages.pages里的style都有会覆盖globalStyle的样式
+				 2.path-路径
+			     3.style-样式
+			</view>
 	</view>
 </template>
 

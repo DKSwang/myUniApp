@@ -3,21 +3,23 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
 			"path": "pages/demo1/demo1",
 			"style": {
-				"navigationBarTitleText": "Demo1"
+				"navigationBarTitleText": "Demo1" //头部标题
+				// "navigationStyle": "" //去掉头部
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "black", //顶部文字颜色-white/black
+		"navigationBarTitleText": "uni-app99",//顶部页面路由名称
+		"navigationBarBackgroundColor": "#F8F8F8",//顶部区域背景颜色
+		"backgroundColor": "#F8F8F8",
+		"enablePullDownRefresh":true
 	},
 	"uniIdRouter": {}
 }
