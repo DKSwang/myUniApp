@@ -5,8 +5,6 @@
 </template>
 
 <script lang='ts' setup>
-  import {ref} from "vue"
-  import {onLoad} from "@dcloudio/uni-app"
   onLoad((e) =>{
 	  console.log(e,'接受参数')//{name: "张三", age: "90"}
   })
